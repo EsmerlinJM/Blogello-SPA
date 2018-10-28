@@ -11,11 +11,14 @@
           </v-list>
         </v-menu>
         <v-spacer></v-spacer>
-        <v-toolbar-title v-text="title"></v-toolbar-title>
+        <router-link to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
         <v-spacer></v-spacer>
         <div>
-          <router-link to="/register" tag="span"><v-btn color="info" flat><v-icon left="">input</v-icon> Register</v-btn></router-link>
+          <router-link to="/login" tag="span"><v-btn color="info" flat><v-icon left="">input</v-icon> Login</v-btn></router-link>
         </div>
+        <div>
+          <router-link to="/register" tag="span"><v-btn color="info" flat><v-icon left="">assignment</v-icon> Register</v-btn></router-link>
+        </div>  
     </v-toolbar>
 
   <main>
@@ -26,7 +29,7 @@
     <v-content>
       
     </v-content>
-    <v-footer :fixed="fixed" app>
+    <v-footer app>
        <v-spacer></v-spacer>
         <span>Blogello &copy;2017</span>
         <v-spacer></v-spacer>
@@ -38,16 +41,10 @@
 export default {
   data () {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
       items: [{
-        icon: 'bubble_chart',
+        icon: 'bubble_chart', 
         title: 'Inspire'
       }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: 'Blogello'
     }
   },
