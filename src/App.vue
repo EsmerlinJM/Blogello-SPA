@@ -10,6 +10,9 @@
             </v-list-tile>
           </v-list>
         </v-menu>
+        <div>
+          <router-link to="/tasks" tag="span"><v-btn flat><v-icon left="">assignment</v-icon> Tasks</v-btn></router-link>
+        </div>
         <v-spacer></v-spacer>
         <router-link to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
         <v-spacer></v-spacer>
