@@ -4,10 +4,14 @@ import services from './services'
 
 Vue.use(Vuex)
 
-const state = {
-    services
-}
-
 export default new Vuex.Store({
-    state
+    state:{
+        token: localStorage.getItem('token'),
+        services: services 
+    },
+    getters: {
+        loggedIn(state) {
+            return state.token !== null
+        }
+    }
 })

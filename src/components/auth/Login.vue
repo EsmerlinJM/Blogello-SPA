@@ -27,7 +27,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="login()">Login</v-btn>
+                <v-btn color="primary" @click="login()" >Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -54,15 +54,17 @@ export default {
         v => !!v || 'Password is required',
         v => v.length <= 8 || 'Password must be less than 8 characters'
       ],
+      token: localStorage.getItem('token') || null
   }),
   methods: {
       login() {
         let self = this;
         self.$store.state.services.AuthService.login(self.form)
         .then(result => {
-            let token = result.data.user.api_token;
-            localStorage.setItem('token', token);
-            self.$router.push('/tasks');
+            self.token = result.data.user.api_token;
+            self.$store.state.token = localStorage.setItem('token', self.token)
+            localStorage.setItem('user',JSON.stringify(result.data.user));
+            self.$router.push('/boards');
         }).catch(err => {
             self.message = 'Invalid Credentials';
             self.alert = true;

@@ -17,9 +17,18 @@ class AuthService {
         return self.axios.post(`${self.baseUrl}/login`, model);
     }
 
-    logout() {
+    logout(token) {
         let self = this;
-        return self.axios.post(`${self.baseUrl}/logout`);
+        self.axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem(token)}`
+        // self.axios.post(`${self.baseUrl}/logout`)
+        localStorage.removeItem(token)
+        return true;
+    }
+
+    getAuth(){
+        let self = this;
+        self.axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+        return self.axios.get(`${self.baseUrl}/auth`) 
     }
 }
 
