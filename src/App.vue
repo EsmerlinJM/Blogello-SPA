@@ -10,7 +10,8 @@
         <v-layout align-center justify-center>
           <v-flex xs10 sm8 md1>
                 <v-layout row-sm wrap="" child-flex-sm>
-                    <router-link to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
+                    <router-link v-show="!loggedIn" to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
+                    <router-link v-show="loggedIn" to="/boards" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
               </v-layout>
           </v-flex>
         </v-layout>
@@ -24,7 +25,7 @@
                 :disabled="loading"
                 @click.native="loader = 'loading'"
                 flat>
-            <v-icon left="">input</v-icon> Logout</v-btn>
+            <v-icon left="">exit_to_app</v-icon> Logout</v-btn>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -51,60 +52,63 @@
 </template>
 
 <script>
-import ListBoard from '@/components/board/ListBoards'
+import ListBoard from "@/components/board/ListBoards";
+import BoardData from "@/mixins/BoardDataMixin.js";
 export default {
-  components : {ListBoard},
-  name: 'App',
-  data () {
+  components: { ListBoard },
+  name: "App",
+  data() {
     return {
       boards: [],
       user: [],
-      title: 'Blogello',
+      title: "Blogello",
       loader: null,
       loading: false,
-      token: localStorage.getItem('token') || null
-    }
+      token: localStorage.getItem("token") || null
+    };
   },
-  computed:{
+  computed: {
     //verificamos si el usuario esta logueado returna true o false
-    loggedIn(){
-      return this.$store.getters.loggedIn
+    loggedIn() {
+      return this.$store.getters.loggedIn;
     }
   },
   watch: {
-      loader () {
-        const l = this.loader
-        this[l] = !this[l]
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
 
-        setTimeout(() => (this[l] = false, this.logout()), 2000)
+      setTimeout(() => ((this[l] = false), this.logout()), 2000);
 
-        this.loader = null
-      }
-    },
-    mounted() {
-      let self = this
-        if(self.token){
-          self.getAuth()
-        }
-    },
+      this.loader = null;
+    }
+  },
+  mounted() {
+    let self = this;
+    if (self.token) {
+      self.getAuth();
+      //self.getBoards()
+    }
+  },
+  mixins: [BoardData],
   methods: {
     logout() {
-      let self = this
-      let token = 'token';
+      let self = this;
+      let token = "token";
       let response = self.$store.state.services.AuthService.logout(token);
-      if(response){
-        localStorage.removeItem('user')
-        this.token = null
-        self.$store.state.token = this.token
-        self.$router.push('/');
+      if (response) {
+        localStorage.removeItem("user");
+        this.token = null;
+        self.$store.state.token = this.token;
+        self.$router.push("/");
       } else {
-        console.log('Ocurrio un error');
+        console.log("Ocurrio un error");
       }
     },
-    getAuth(){
-      let self = this 
-      self.user = JSON.parse(localStorage.getItem('user'))
+    getAuth() {
+      let self = this;
+      self.user = JSON.parse(localStorage.getItem("user"));
     }
   }
-}
+};
 </script>

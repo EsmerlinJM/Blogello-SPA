@@ -2,12 +2,12 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
+        <img src="@/assets/img/management.svg" alt="notes.js" class="mb-5">
         <blockquote>
-          &#8220;First, solve the problem. Then, write the code.&#8221;
+          &#8220;First, manages the tasks. Then, fix de problems easy.&#8221;
           <footer>
             <small>
-              <em>&mdash;John Johnson</em>
+              <em>&mdash;Esmerlin Mieses</em>
             </small>
           </footer>
         </blockquote>
@@ -18,6 +18,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+img {
+  width: 25%;
+}
 h1, h2 {
   font-weight: normal;
 }

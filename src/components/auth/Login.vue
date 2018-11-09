@@ -17,7 +17,7 @@
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form @keyup.enter="login()">
                   	<v-text-field v-model="form.email" :rules="emailRules" prepend-icon="mail" label="E-mail"
             required ></v-text-field>
 

@@ -4,7 +4,9 @@
           <v-btn primary flat slot="activator"><v-icon left="">developer_board</v-icon> Boards</v-btn>
           <v-list>
             <v-list-tile v-for="board in boards" :key="board.id">
-              <v-list-tile-title>{{ board.name }}</v-list-tile-title>
+                <router-link :to="{name:'SingleBoard', params:{ id: board.id }}">
+                    <v-list-tile-title>{{ board.name }}</v-list-tile-title>
+                </router-link>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -31,5 +33,8 @@ export default {
 </script>
 
 <style>
-
+a {
+    text-decoration: none;
+    color: #fff;
+}
 </style>

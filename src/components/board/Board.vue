@@ -22,29 +22,18 @@
 </template>
 
 <script>
+import BoardData from "@/mixins/BoardDataMixin.js";
 export default {
     data: () => {
         return {
             boards : []
         }
     },
-    created() {
-        let self = this;
-        self.getAll();
+    mounted() {
+        let self = this
+        self.getBoards()
     },
-    methods: {
-        getAll() {
-            let self = this
-            self.$store.state.services.BoardService
-            .getAll()
-            .then(result => {
-                self.boards = result.data.boards;
-                Event.$emit('BoardLoaded', result.data.boards);
-            }).catch(err => {
-                console.log(err);
-            });
-        }
-    }
+    mixins: [BoardData],
 }
 </script>
 
