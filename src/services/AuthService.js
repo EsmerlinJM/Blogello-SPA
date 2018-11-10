@@ -25,11 +25,11 @@ class AuthService {
         return true;
     }
 
-    getAuth(){
-        let self = this;
-        self.axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-        return self.axios.get(`${self.baseUrl}/auth`) 
-    }
+    // getAuth(){
+    //     let self = this;
+    //     self.axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+    //     return self.axios.get(`${self.baseUrl}/auth`) 
+    // }
 }
 
 export default AuthService
