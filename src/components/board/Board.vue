@@ -14,6 +14,7 @@
                             </v-card>
                             </router-link>
                         </div>
+                            <v-btn color="primary">Add new board..</v-btn>
                 </v-layout>
           </v-flex>
         </v-layout>

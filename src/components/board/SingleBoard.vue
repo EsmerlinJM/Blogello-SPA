@@ -35,7 +35,7 @@
                         <v-card-title primary-title>
                             <v-text-field @click.stop="" v-show="edit" prepend-icon="list" v-model="listName" label="Card name"
                             required @keyup.enter="addList()"></v-text-field>
-                            <v-btn small color="primary" @click.stop="editCard()" v-show="!edit">Add new list...</v-btn>
+                            <v-btn small color="primary" @click.stop="editCard()" v-show="!edit">Add new card...</v-btn>
                         </v-card-title>
                     </v-card>
                 </v-flex>
@@ -105,8 +105,7 @@ export default {
             self.edit = false
             self.$store.state.services.ListService.add({name: self.listName}, self.boardId)
             .then(result => {
-                let newList = result.data.list
-                self.lists.push(newList)
+                self.lists.push(result.data.list)
                 self.listName = null
             }).catch(err => {
                 console.log(err);

@@ -10,7 +10,7 @@
         <v-layout align-center justify-center>
           <v-flex xs10 sm8 md1>
                 <v-layout row-sm wrap="" child-flex-sm>
-                    <router-link v-show="!loggedIn" to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
+                    <router-link class="spacer" v-show="!loggedIn" to="/" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
                     <router-link v-show="loggedIn" to="/boards" tag="span"><v-btn flat><v-toolbar-title v-text="title"></v-toolbar-title></v-btn></router-link>
               </v-layout>
           </v-flex>
@@ -112,3 +112,10 @@ export default {
   }
 };
 </script>
+<style>
+  .spacer{
+    position: relative;
+    left: 100px;
+  }
+</style>
+

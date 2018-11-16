@@ -4,7 +4,7 @@
       <v-layout column align-center>
         <img src="@/assets/img/management.svg" alt="notes.js" class="mb-5">
         <blockquote>
-          &#8220;First, manages the tasks. Then, fix de problems easy.&#8221;
+          &#8220;First, manages the tasks. Then, fix de problems step by step.&#8221;
           <footer>
             <small>
               <em>&mdash;Esmerlin Mieses</em>
